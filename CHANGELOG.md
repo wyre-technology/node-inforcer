@@ -1,3 +1,10 @@
+# 1.0.0 (2026-06-18)
+
+
+### Features
+
+* initial Inforcer API client SDK ([4217038](https://github.com/wyre-technology/node-inforcer/commit/421703808d3176d31cfdfd664657d996970c0f78))
+
 # Changelog
 
 All notable changes to this project will be documented in this file.

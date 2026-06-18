@@ -1,6 +1,6 @@
 {
   "name": "@wyre-technology/node-inforcer",
-  "version": "0.0.0-semantically-released",
+  "version": "1.0.0",
   "description": "Node.js client library for the Inforcer API (community-sourced)",
   "type": "module",
   "main": "./dist/index.cjs",
