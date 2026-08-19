@@ -15,6 +15,7 @@ export { RolesResource } from './resources/roles.js';
 export { AuditEventsResource } from './resources/auditEvents.js';
 export type { AuditEventSearchResult } from './resources/auditEvents.js';
 export { AssessmentsResource } from './resources/assessments.js';
+export { ReportsResource } from './resources/reports.js';
 
 export * from './types/index.js';
 export * from './errors.js';

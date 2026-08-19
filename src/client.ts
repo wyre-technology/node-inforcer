@@ -13,6 +13,7 @@ import { GroupsResource } from './resources/groups.js';
 import { RolesResource } from './resources/roles.js';
 import { AuditEventsResource } from './resources/auditEvents.js';
 import { AssessmentsResource } from './resources/assessments.js';
+import { ReportsResource } from './resources/reports.js';
 
 /**
  * Client for the Inforcer REST API.
@@ -34,6 +35,7 @@ export class InforcerClient {
   readonly roles: RolesResource;
   readonly auditEvents: AuditEventsResource;
   readonly assessments: AssessmentsResource;
+  readonly reports: ReportsResource;
 
   private httpClient: HttpClient | null = null;
   private readonly config: Required<
@@ -69,6 +71,7 @@ export class InforcerClient {
     this.roles = new RolesResource(getClient);
     this.auditEvents = new AuditEventsResource(getClient);
     this.assessments = new AssessmentsResource(getClient);
+    this.reports = new ReportsResource(getClient);
   }
 
   /**

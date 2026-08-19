@@ -9,3 +9,4 @@ export * from './groups.js';
 export * from './roles.js';
 export * from './assessments.js';
 export * from './secure-scores.js';
+export * from './reports.js';
