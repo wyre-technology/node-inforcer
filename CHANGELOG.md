@@ -31,7 +31,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `groups` — `listByTenant` (search + pagination), `get`.
   - `roles` — `listByTenant`.
   - `auditEvents` — `listEventTypes`, `search` (`POST` with JSON body, preserving `continuationToken`).
-  - `assessments` — `list`, `run` (the only mutating method).
+  - `assessments` — `list`, `run` (mutating).
+  - `reports` — `types`, `listRuns`, `run` (mutating — queues a run across one or more tenants),
+    `outputs` (poll a run to terminal; normalizes the API's 200/404 polling contract into
+    `{ isTerminal, outputs }`), `downloadOutput` (raw bytes via `HttpClient.requestBinary`).
 - `resolveTenantId` helper and `InforcerClient.resolveTenantId` for the Client Tenant ID (integer)
   vs Azure AD tenant GUID distinction.
 - Standard envelope unwrapping (`{ success, message, errors, data }`) with `preserveFullResponse`

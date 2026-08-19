@@ -164,6 +164,90 @@ export class HttpClient {
   }
 
   /**
+   * Download raw bytes from an endpoint that returns a file (not a JSON
+   * envelope) — e.g. `GET /beta/reports/runs/{runId}/outputs/{outputId}`.
+   * Retries on 5xx like {@link request}; does not JSON-parse the body.
+   */
+  async requestBinary(path: string): Promise<{
+    data: ArrayBuffer;
+    contentType: string | null;
+    fileName: string | null;
+  }> {
+    let endpoint = path.trim();
+    if (!endpoint.startsWith('/')) endpoint = `/${endpoint}`;
+    const url = `${this.baseUrl}${endpoint}`;
+
+    let lastError: Error | null = null;
+
+    for (let attempt = 0; attempt <= this.maxRetries; attempt++) {
+      if (attempt > 0) {
+        const delay = Math.min(1000 * 2 ** (attempt - 1) + Math.random() * 1000, 300_000);
+        await new Promise((r) => setTimeout(r, delay));
+      }
+
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), this.timeout);
+
+      let response: Response;
+      try {
+        response = await this.fetchImpl(url, {
+          method: 'GET',
+          headers: { 'Inf-Api-Key': this.apiKey },
+          signal: controller.signal,
+        });
+        clearTimeout(timeoutId);
+      } catch (err) {
+        clearTimeout(timeoutId);
+        let e = err as Error;
+        if (e.name === 'AbortError') {
+          e = new InforcerError(`Request timeout after ${this.timeout}ms`);
+        }
+        lastError = e;
+        if (attempt < this.maxRetries) continue;
+        throw e;
+      }
+
+      if (!response.ok) {
+        if (response.status >= 500 && attempt < this.maxRetries) {
+          const rawText = await response.text().catch(() => '');
+          lastError = this.buildError(response.status, undefined, rawText);
+          continue;
+        }
+        const rawText = await response.text().catch(() => '');
+        let envelope: ApiEnvelope | undefined;
+        try {
+          envelope = rawText ? (JSON.parse(rawText) as ApiEnvelope) : undefined;
+        } catch {
+          envelope = undefined;
+        }
+        throw this.buildError(response.status, envelope, rawText);
+      }
+
+      const data = await response.arrayBuffer();
+      const contentType = response.headers.get('content-type');
+      const fileName = this.parseFileName(response.headers.get('content-disposition'));
+      return { data, contentType, fileName };
+    }
+
+    throw lastError ?? new InforcerError('Request failed after retries');
+  }
+
+  /** Extract the `filename` parameter from a `Content-Disposition` header value. */
+  private parseFileName(header: string | null): string | null {
+    if (!header) return null;
+    const starMatch = /filename\*\s*=\s*[^']*''([^;]+)/i.exec(header);
+    if (starMatch) {
+      try {
+        return decodeURIComponent(starMatch[1].trim());
+      } catch {
+        return starMatch[1].trim();
+      }
+    }
+    const match = /filename\s*=\s*"?([^";]+)"?/i.exec(header);
+    return match ? match[1].trim() : null;
+  }
+
+  /**
    * If `data` is a plain object whose only meaningful array property holds the
    * payload (e.g. `{ value: [...] }`), unwrap to that array. Mirrors the tail of
    * `Invoke-InforcerApiRequest` (the default, non-preserve path).
