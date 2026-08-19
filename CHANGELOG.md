@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/wyre-technology/node-inforcer/compare/v1.0.0...v1.1.0) (2026-08-19)
+
+
+### Features
+
+* add reports resource for report generation and download ([#15](https://github.com/wyre-technology/node-inforcer/issues/15)) ([65a1b1b](https://github.com/wyre-technology/node-inforcer/commit/65a1b1b4c55ba6ba1a8c387193640ce8680b309e))
+
 # 1.0.0 (2026-06-18)
 
 
