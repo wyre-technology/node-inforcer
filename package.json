@@ -1,5 +1,5 @@
 {
-  "name": "@wyre-technology/node-inforcer",
+  "name": "@wyre-ai/node-inforcer",
   "version": "1.1.0",
   "description": "Node.js client library for the Inforcer API (community-sourced)",
   "type": "module",
@@ -42,12 +42,12 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wyre-technology/node-inforcer.git"
+    "url": "https://github.com/WYRE-AI/node-inforcer.git"
   },
   "bugs": {
-    "url": "https://github.com/wyre-technology/node-inforcer/issues"
+    "url": "https://github.com/WYRE-AI/node-inforcer/issues"
   },
-  "homepage": "https://github.com/wyre-technology/node-inforcer#readme",
+  "homepage": "https://github.com/WYRE-AI/node-inforcer#readme",
   "devDependencies": {
     "@semantic-release/changelog": "^7.0.0",
     "@semantic-release/git": "^11.0.1",

@@ -1,4 +1,4 @@
-# @wyre-technology/node-inforcer
+# @wyre-ai/node-inforcer
 
 Node.js / TypeScript client library for the [Inforcer](https://www.inforcer.com/) REST API — Microsoft 365 baseline management, alignment scoring, tenant policy, users, groups, roles, audit events, and assessments.
 
@@ -22,13 +22,13 @@ This package is published to **GitHub Packages**, not the public npm registry.
 Add a scoped registry entry to your project's `.npmrc`:
 
 ```ini
-@wyre-technology:registry=https://npm.pkg.github.com
+@wyre-ai:registry=https://npm.pkg.github.com
 ```
 
 Then install:
 
 ```bash
-npm install @wyre-technology/node-inforcer
+npm install @wyre-ai/node-inforcer
 ```
 
 (Installing private GitHub Packages requires an authenticated `.npmrc` with a
@@ -58,7 +58,7 @@ Inforcer runs region-specific API hosts. You **must** pass a `region`
 ## Quick start
 
 ```typescript
-import { InforcerClient } from '@wyre-technology/node-inforcer';
+import { InforcerClient } from '@wyre-ai/node-inforcer';
 
 const client = new InforcerClient({
   region: 'uk', // required: 'anz' | 'eu' | 'uk' | 'us'
@@ -149,7 +149,7 @@ the client throws a typed error (with the API key redacted from messages):
 | `InforcerError`       | base class for all of the above |
 
 ```typescript
-import { InforcerClient, NotFoundError, RateLimitError } from '@wyre-technology/node-inforcer';
+import { InforcerClient, NotFoundError, RateLimitError } from '@wyre-ai/node-inforcer';
 
 try {
   await client.tenants.get('nope.onmicrosoft.com');

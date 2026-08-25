@@ -2,7 +2,7 @@
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability in `@wyre-technology/node-inforcer`, please email **security@wyretechnology.com** with a description of the issue, reproduction steps, and any relevant logs.
+If you discover a security vulnerability in `@wyre-ai/node-inforcer`, please email **security@wyretechnology.com** with a description of the issue, reproduction steps, and any relevant logs.
 
 Please do not file a public GitHub issue for security reports.
 

@@ -24,10 +24,10 @@ jobs:
           node-version: 22
           cache: npm
           registry-url: https://npm.pkg.github.com
-          scope: '@wyre-technology'
+          scope: '@wyre-ai'
       - name: Configure npm for GitHub Packages
         run: |
-          echo "@wyre-technology:registry=https://npm.pkg.github.com" >> .npmrc
+          echo "@wyre-ai:registry=https://npm.pkg.github.com" >> .npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
       - run: npm ci
       - run: npm run lint
