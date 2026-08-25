@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/WYRE-AI/node-inforcer/compare/v1.1.0...v1.1.1) (2026-08-25)
+
+
+### Bug Fixes
+
+* migrate to WYRE-AI org (npm scope, ghcr namespace, registry) ([#17](https://github.com/WYRE-AI/node-inforcer/issues/17)) ([4b096b8](https://github.com/WYRE-AI/node-inforcer/commit/4b096b8f568aa47f1e67688552a96a613846fc5b))
+
 # [1.1.0](https://github.com/wyre-technology/node-inforcer/compare/v1.0.0...v1.1.0) (2026-08-19)
 
 
